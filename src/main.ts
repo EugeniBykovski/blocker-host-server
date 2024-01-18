@@ -12,6 +12,13 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.use(cookieParser());
+  app.enableCors({
+    origin: [
+      'http://localhost:3001',
+      'chrome-extension://nccmfgldbkaegfonphcceihlbhfbmjnb',
+    ],
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe()); // pipe for validation
 
   await app.listen(3000);
